@@ -59,11 +59,15 @@ This tutorial will guide you in configuring *MFT Agents* on Cloudpak for integra
 #### 4. Build MFT Agent Docker image  
 1. Perform all the below steps on oc-terminal  
 2. Navigate to `<path>/mft-cp4i/AgentSetup`
-3. Dowload MFT Agents redistributable package from [here] (https://www.ibm.com/support/pages/downloading-ibm-mq-version-915-continuous-delivery)  
-	a. Scroll down the page to find **Clients** section and within that the **IBM MQ redistributable Managed File Transfer Agents** download link.  
-	b.This redistributable package is used to build the MFT Agents  image to containerize MFT Agents.  
-	c. Basic design is to have an MFT agent per container. This is done for ease of maintainability of MFT Agents.  
-4. Run the command `docker build -t mftagent:1.0 -f Dockerfile-agent .`  
+3. Dowload MFT Agents redistributable package from [here] (https://www.ibm.com/support/pages/downloading-ibm-mq-version-915-continuous-delivery) 
+	a. Scroll down the page to find **Clients** section and within that the **IBM MQ redistributable Managed File Transfer Agents** download link. 
+	b.This redistributable package is used to build the MFT Agents  image to containerize MFT Agents.
+	c. Basic design is to have an MFT agent per container. This is done for ease of maintainability of MFT Agents.
+4. Run the command `docker build -t mftagent:1.0 -f Dockerfile-agent .` 
+	
+	**Note:** 1. for building the MFT PBA agent update the ProtocolBridgeCredentials.xml file as per your server configuration and then run `docker build -t mftagent:1.0 -f Dockerfile-agent .`
+	2. To deploy a IBM MQ Managed file transfer protocol Bridge Agent(PBA agent) [click here](./README_pbagent.md) for the steps.
+
 5. Once the docker image building is successful, move to next section  
 
 #### 5. Push the MFT Agent Docker image to your cluster namespace
